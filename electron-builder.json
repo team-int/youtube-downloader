@@ -4,6 +4,7 @@
     "directories": {
         "output": "out"
     },
+    "asar": false,
     "files": [
         "**/*",
         "!src/*.ts",

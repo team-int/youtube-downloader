@@ -8,9 +8,9 @@
   "scripts": {
     "start": "yarn compile && electron .",
     "compile": "tsc && sass -I node_modules style.scss:style.css",
-    "build:win": "yarn compile && electron-builder -c -w && node msi.js",
-    "build:mac": "yarn compile && electron-builder -c -m",
-    "build:lnx": "yarn compile && electron-builder -c -l"
+    "build:win": "yarn compile && electron-builder -c -w -p never&& node msi.js",
+    "build:mac": "yarn compile && electron-builder -c -m -p never",
+    "build:lnx": "yarn compile && electron-builder -c -l -p never"
   },
   "repository": {
     "type": "git",

@@ -17,7 +17,9 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Install rpm, fakeroot, and dpkg
-        run: sudo apt update -y && sudo apt install -y rpm fakeroot dpkg
+        run: |
+          sudo apt update -y
+          sudo apt install -y rpm fakeroot dpkg
       - name: Build
         run: yarn build:lnx
       - name: Upload Artifacts
@@ -60,7 +62,9 @@ jobs:
         run: echo "C:\Program Files (x86)\Wix Toolset v3.11\bin" >> $GITHUB_PATH
         shell: bash
       - name: Build
-        run: yarn build:win && node msi.js
+        run: |
+          yarn build:win
+          node msi.js
         shell: bash
       - name: Upload Squirrel Artifacts
         uses: actions/upload-artifact@v2
@@ -83,7 +87,9 @@ jobs:
           git config user.email 54498184+mswgen@users.noreply.github.com
           git remote add origin https://{{ secrets.ACCESS_TOKEN }}@github.com/team-int/youtube-downloader.git
       - name: Configure Git LFS
-        run: git lfs install && git lfs track out/**/*
+        run: |
+          git lfs install
+          git lfs track out/**/*
       - name: Download Linux Artifacts
         uses: actions/download-artifact@v2
         with:
@@ -105,4 +111,8 @@ jobs:
           name: msi
           path: msi
       - name: Deploy
-        run: git add squirrel msi lnx mac && git commit -m "Update" && git lfs push --all origin main && git push -u origin main
+        run: |
+          git add squirrel msi lnx mac
+          git commit -m "Update"
+          git lfs push --all origin main
+          git push -u origin main

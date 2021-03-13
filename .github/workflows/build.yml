@@ -79,7 +79,7 @@ jobs:
       - name: Configure git
         run: git init && git config user.name mswgen && git config user.email 54498184+mswgen@users.noreply.github.com && git remote add origin https://{{ secrets.ACCESS_TOKEN }}@github.com/team-int/youtube-downloader.git
       - name: Configure Git LFS
-        run: git lfs install
+        run: git lfs install && git lfs track out/**/*
       - name: Download Linux Artifacts
         uses: actions/download-artifact@v2
         with:

@@ -1,8 +1,8 @@
 import { MSICreator } from 'electron-wix-msi';
 import path from 'path';
 const creator:MSICreator = new MSICreator({
-    appDirectory: path.join(__dirname, 'dist/win-ia32-unpacked'),
-    outputDirectory: path.join(__dirname, 'dist/msi'),
+    appDirectory: path.join(__dirname, 'out/win-ia32-unpacked'),
+    outputDirectory: path.join(__dirname, 'out/msi'),
     exe: 'YouTube Downloader.exe',
     description: 'A simple YouTube downloader',
     version: require('./package.json').version,

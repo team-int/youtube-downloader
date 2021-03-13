@@ -1,0 +1,69 @@
+{
+    "appId": "kr.co.intteam.${name}",
+    "copyright": "Copyright (c) 2021 Team int",
+    "directories": {
+        "output": "out"
+    },
+    "files": [
+        "**/*",
+        "!src/*.ts",
+        "!*.sass",
+        "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+        "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+        "!**/node_modules/*.d.ts",
+        "!**/node_modules/.bin",
+        "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+        "!.editorconfig",
+        "!**/._*",
+        "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+        "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+        "!**/{appveyor.yml,.travis.yml,circle.yml}",
+        "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
+    "win": {
+        "target": [
+            {
+                "target": "squirrel",
+                "arch": "x64"
+            },
+            {
+                "target": "dir",
+                "arch": "ia32"
+            }
+        ],
+        "icon": "build/icon.ico",
+        "artifactName": "YouTubeDownloaderSetup.${ext}"
+    },
+    "squirrelWindows": {
+        "iconUrl": "https://github.com/${u}/${p}/blob/main/logo.ico?raw=true"
+    },
+    "linux": {
+        "target": [
+            {
+                "target": "deb",
+                "arch": "x64"
+            },
+            {
+                "target": "rpm",
+                "arch": "x64"
+            }
+        ],
+        "icon": "build/linux-icon",
+        "synopsis": "A simple YouTube Downloader",
+        "description": "A simple YouTube Downloader",
+        "category": "Utility"
+    },
+    "mac": {
+        "category": "public.app-category-utilities",
+        "target": [
+            {
+                "target": "dmg",
+                "arch": "x64"
+            }
+        ],
+        "icon": "build/icon.icns"
+    },
+    "dmg": {
+        "title": "${productName}"
+    }
+}

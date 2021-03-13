@@ -1,0 +1,126 @@
+name: Build
+on:
+  push:
+    branches-ignore:
+      - build
+  workflow_dispatch:
+jobs:
+  buildLnx:
+    name: Debian, RedHat Package(.deb, .rpm)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          persist-credentials: false 
+      - name: Install Dependencies
+        run: yarn
+      - name: Install rpm, fakeroot, and dpkg
+        run: sudo apt update -y && sudo apt install -y rpm fakeroot dpkg
+      - name: Build
+        run: yarn build:lnx
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: lnx
+          path: |
+            out/youtube-downloader_*.*.*_amd64.deb
+            out/youtube-downloader-*.*.*.x86_64.rpm
+  buildMac:
+    name: macOS Application(.dmg)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          persist-credentials: false 
+      - name: Install Dependencies
+        run: yarn
+      - name: Build
+        run: yarn build:mac
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: mac
+          path: out/YouTube Downloader-*.*.*.dmg
+  buildWin:
+    name: Windows Executable and Installer(.exe, .msi)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          persist-credentials: false 
+      - name: Install Dependencies
+        run: yarn
+      - name: Add light and candle to PATH
+        run: echo "C:\Program Files (x86)\Wix Toolset v3.11\bin" >> $GITHUB_PATH
+        shell: bash
+      - name: Build
+        run: yarn build:win && node msi.js
+        shell: bash
+      - name: Upload Squirrel Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: squirrel
+          path: out/squirrel-windows
+      - name: Upload MSI Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: msi
+          path: out/msi
+  deploy:
+    needs: [buildLnx, buildMac, buildWin]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Linux Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: lnx
+          path: lnx
+      - name: Deploy Linux Packages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: build
+          FOLDER: lnx
+          CLEAN: true
+      - name: Download macOS Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: mac
+          path: mac
+      - name: Deploy macOS Application
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: build
+          FOLDER: mac
+          CLEAN: false
+      - name: Download Squirrel Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: squirrel
+          path: squirrel
+      - name: Deploy Windows Executable
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: build
+          FOLDER: squirrel
+          CLEAN: false
+      - name: Download MSI Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: msi
+          path: msi
+      - name: Deploy Windows Installer
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: build
+          FOLDER: msi
+          CLEAN: false

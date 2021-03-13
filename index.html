@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Downloader</title>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <img src="ytlogo.png" alt="yt-logo-header" id="header-yt-logo"><br><br>
+        <p id="header-label">무료로 YouTube 다운로드</p>
+    </div>
+    <div id="search">
+        <div class="mdc-text-field mdc-text-field--outlined" id="videoid-container">
+            <input class="mdc-text-field__input" id="videoid">
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label for="videoid" class="mdc-floating-label">비디오 ID</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>
+        <button class="mdc-button mdc-button--unelevated" id="searchBtn">
+            <span class="mdc-button__ripple"></span>
+            <span class="mdc-button__label">검색</span>
+        </button>
+    </div>
+    <div id="metadata">
+        <img id="thumbnail">
+        <div id="infos">
+            <h4 id="title"></h4>
+            <p id="author"></p>
+            <p id="duration"></p>
+        </div>
+    </div>
+    <div id="dloptions">
+        <p>비디오 품질(같은 값이 여러개 있을 수 있어요)</p>
+        <div class="mdc-form-field" id="radio-container-video"></div>
+        <p>오디오 품질(같은 값이 여러개 있을 수 있어요)</p>
+        <div class="mdc-form-field" id="radio-container-audio"></div>
+        <p>파일 형식</p>
+        <div class="mdc-form-field" id="radio-container-format"></div>
+        <button class="mdc-button mdc-button--unelevated" id="download">
+            <span class="mdc-button__ripple"></span>
+            <span class="mdc-button__label">다운로드</span>
+        </button>
+    </div>
+    <div id="downloading">
+        <h2>다운로드 중...</h2>
+        <br><br>
+        <span class="onlyvideo">비디오 다운로드: </span>
+        <span id="videodl" class="onlyvideo">0</span>
+        <span class="onlyvideo">% 완료</span>
+        <br class="onlyvideo">
+        <span>오디오 다운로드: </span>
+        <span id="audiodl">0</span>
+        <span>% 완료</span>
+        <br>
+        <span class="onlyvideo">비디오 인코딩: </span>
+        <span id="videoenc" class="onlyvideo">0</span>
+        <span class="onlyvideo">% 완료</span><br>
+        <span>오디오 인코딩: </span>
+        <span id="audioenc">0</span>
+        <span>% 완료</span><br>
+        <span class="onlyvideo">비디오, 오디오 병합: </span>
+        <span id="merge" class="onlyvideo">0</span>
+        <span class="onlyvideo">% 완료</span><br>
+    </div>
+</body>
+</html>

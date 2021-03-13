@@ -111,7 +111,7 @@ dist
 **/.DS_Store
 
 # Dist directory
-dist/
+out/
 
 # Compiled CSS files
 **/*.css

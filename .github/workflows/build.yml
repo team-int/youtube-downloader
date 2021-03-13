@@ -76,51 +76,29 @@ jobs:
     needs: [buildLnx, buildMac, buildWin]
     runs-on: ubuntu-latest
     steps:
+      - name: Configure git
+        run: git init && git config user.name mswgen && git config user.email 54498184+mswgen@users.noreply.github.com && git remote add origin https://{{ secrets.ACCESS_TOKEN }}@github.com/team-int/youtube-downloader.git
+      - name: Configure Git LFS
+        run: git lfs install
       - name: Download Linux Artifacts
         uses: actions/download-artifact@v2
         with:
           name: lnx
           path: lnx
-      - name: Deploy Linux Packages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: build
-          FOLDER: lnx
-          CLEAN: true
       - name: Download macOS Artifacts
         uses: actions/download-artifact@v2
         with:
           name: mac
           path: mac
-      - name: Deploy macOS Application
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: build
-          FOLDER: mac
-          CLEAN: false
       - name: Download Squirrel Artifacts
         uses: actions/download-artifact@v2
         with:
           name: squirrel
           path: squirrel
-      - name: Deploy Windows Executable
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: build
-          FOLDER: squirrel
-          CLEAN: false
       - name: Download MSI Artifacts
         uses: actions/download-artifact@v2
         with:
           name: msi
           path: msi
-      - name: Deploy Windows Installer
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: build
-          FOLDER: msi
-          CLEAN: false
+      - name: Deploy
+        run: git add squirrel msi lnx mac && git commit -m "Update" && git lfs push --all origin main && git push -u origin main

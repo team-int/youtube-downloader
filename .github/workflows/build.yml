@@ -76,43 +76,29 @@ jobs:
         with:
           name: msi
           path: out/msi
-  deploy:
-    needs: [buildLnx, buildMac, buildWin]
+  publish:
+    name: Publish
+    needs: [buildLnx, buildWin, buildMac]
     runs-on: ubuntu-latest
     steps:
-      - name: Configure git
-        run: |
-          git init
-          git config user.name mswgen
-          git config user.email 54498184+mswgen@users.noreply.github.com
-          git remote add origin https://{{ secrets.ACCESS_TOKEN }}@github.com/team-int/youtube-downloader.git
-      - name: Configure Git LFS
-        run: |
-          git lfs install
-          git lfs track out/**/*
-      - name: Download Linux Artifacts
-        uses: actions/download-artifact@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
         with:
-          name: lnx
-          path: lnx
-      - name: Download macOS Artifacts
+          fetch-depth: '0'
+      - name: Create a new Tag
+        run: git tag v$(node -e "console.log(require('./package.json').version)"); git push origin --tags
+      - name: Download Artifacts
         uses: actions/download-artifact@v2
+      - name: Publish to GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: mac
-          path: mac
-      - name: Download Squirrel Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: squirrel
-          path: squirrel
-      - name: Download MSI Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: msi
-          path: msi
-      - name: Deploy
-        run: |
-          git add squirrel msi lnx mac
-          git commit -m "Update"
-          git lfs push --all origin main
-          git push -u origin main
+          body: "변경사항: \n\n**다운로드/설치 전에 꼭 [여기](https://github.com/team-int/youtube-downloader/blob/main/installation.md)를 읽어주세요!**"
+          draft: true
+          tag_name: v$(node -e "console.log(require('./package.json').version)")
+          files: |
+            lnx/*
+            mac/*
+            squirrel/*
+            msi/*
+        env:
+          GITHUB_TOKEN: {{ secrets.ACCESS_TOKEN }}

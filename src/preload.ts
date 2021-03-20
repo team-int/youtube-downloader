@@ -9,6 +9,7 @@ import path from 'path';
 import child from 'child_process';
 import os from 'os';
 window.addEventListener('load', () => {
+    console.log('\x1b[37m\x1b[31m%s\x1b[0m\n\x1b[37m\x1b[31m%s\x1b[0m\n\x1b[37m\x1b[31m%s\x1b[0m\n\x1b[37m\x1b[31m%s\x1b[0m\n\x1b[37m\x1b[31m%s\x1b[0m\n\x1b[37m\x1b[34m%s\x1b[33m%s\x1b[32m%s\x1b[0m\n\x1b[37m\x1b[34m%s\x1b[33m%s\x1b[32m%s\x1b[0m\n\x1b[37m\x1b[34m%s\x1b[33m%s\x1b[32m%s\x1b[0m\n\x1b[37m\x1b[34m%s\x1b[33m%s\x1b[32m%s\x1b[0m\n\x1b[37m\x1b[34m%s\x1b[33m%s\x1b[32m%s\x1b[0m\n\x1b[37m\x1b[30m%s\x1b[0m\n\x1b[37m\x1b[30m%s\x1b[0m\n\x1b[37m\x1b[30m%s\x1b[0m\n\x1b[37m\x1b[30m%s\x1b[0m\n\x1b[37m\x1b[30m%s\x1b[0m', '            intintintint', '            intintintint', '            intintintint', '            intintintint', '            intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', 'intintintint', '            intintintint', '            intintintint', '            intintintint', '            intintintint', '            intintintint');
     if (!fs.existsSync(path.join(os.homedir(), '/.youtube-download'))) fs.mkdirSync(path.join(os.homedir(), '/.youtube-download'));
     if (!fs.existsSync(path.join(os.homedir(), '/YouTube'))) fs.mkdirSync(path.join(os.homedir(), '/YouTube'));
     const sessionId: number = Math.floor(Math.random() * 1000000);

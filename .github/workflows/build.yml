@@ -117,4 +117,4 @@ jobs:
         with:
           snapcraft_token: ${{ secrets.SNAPCRAFT }}
       - name: Publish to snapcraft
-        run: snapcraft upload --channel stable snap/youtube-downloader_*.*.*_amd64.snap
+        run: snapcraft upload --release stable snap/youtube-downloader_*.*.*_amd64.snap

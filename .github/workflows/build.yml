@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install -y rpm fakeroot dpkg libarchive-tools
-          sudo snap install snapcraft
+          sudo snap install --classic snapcraft
       - name: Build
         run: yarn build:lnx
       - name: Upload deb, rpm, and pacman Artifacts

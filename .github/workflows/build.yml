@@ -16,10 +16,10 @@ jobs:
           persist-credentials: false 
       - name: Install Dependencies
         run: yarn
-      - name: Install rpm, fakeroot, and dpkg
+      - name: Install rpm, fakeroot, dpkg, and libarchive-tools
         run: |
           sudo apt update -y
-          sudo apt install -y rpm fakeroot dpkg
+          sudo apt install -y rpm fakeroot dpkg libarchive-tools
       - name: Build
         run: yarn build:lnx
       - name: Upload Artifacts
@@ -29,6 +29,7 @@ jobs:
           path: |
             out/youtube-downloader_*.*.*_amd64.deb
             out/youtube-downloader-*.*.*.x86_64.rpm
+            out/youtube-downloader-*.*.*.pacman
   buildMac:
     name: macOS Application(.dmg)
     runs-on: macos-latest

@@ -30,7 +30,17 @@ Ubuntu/Debian: deb 파일
 
 RedHat/Fefora/CentOS: rpm 파일
 
+Arch linux/Manjaro: pacman 파일
+
 을 다운받은 다음 OS의 패키지 매니저를 이용해 설치해주세요.
+
+Ubuntu/Debian: 파일 더블클릭 - 설치 혹은 `sudo apt install <파일 경로>`
+
+RedHat/Fedora/CentOS: 파일 더블클릭 - 설치 혹은 `sudo dnf install <파일 경로>`(dnf가 없을 경우 yum을 이용해주세요)
+
+Arch linux: `sudo pacman -U <파일 경로>`
+
+혹은 Ubuntu/Debian 리눅스의 경우 [PPA](https://github.com/team-int/ppa)를 통해 설치할 수도 있어요
 
 (다른 리눅스 배포판은 지원하지 않아요.)
 
@@ -42,10 +52,12 @@ RedHat/Fefora/CentOS: rpm 파일
 
 ## macOS
 
-macOS의 코드 사이닝 적책에 의해 자동 업데이트를 받을 수 없어요.
+macOS의 코드 사이닝 정책에 의해 자동 업데이트를 받을 수 없어요.
 
 ~~사실 이제 저희가 학생이다보니 개발자 인증받을 돈이 없어서 그런겁니다. 죄송하지만 이해해주세요. 근데 왜 이게 돈이 드는거냐고ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ~~
 
 ## Linux
 
-현재는 업데이트가 불가능하지만 열심히 개발 중이니 기다려주세요!
+Debian/Ubuntu 계열: PPA를 통해 설치한 경우 `sudo apt update`와 `sudo apt upgrade`로 업데이트할 수 있어요.
+
+다른 리눅스 배포판은 업데이트를 지원하지 않아요.

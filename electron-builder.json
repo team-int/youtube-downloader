@@ -47,6 +47,10 @@
             {
                 "target": "rpm",
                 "arch": "x64"
+            },
+            {
+                "target": "pacman",
+                "arch": "x64"
             }
         ],
         "icon": "build/linux-icon",

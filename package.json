@@ -2,13 +2,13 @@
   "name": "youtube-downloader",
   "productName": "YouTube Downloader",
   "companyName": "Team int",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple YouTube downloader",
   "main": "index.js",
   "scripts": {
     "start": "yarn compile && electron .",
     "compile": "tsc && sass -I node_modules style.scss:style.css",
-    "build:win": "yarn compile && electron-builder -c -w -p never&& node msi.js",
+    "build:win": "yarn compile && electron-builder -c -w -p never && node msi.js",
     "build:mac": "yarn compile && electron-builder -c -m -p never",
     "build:lnx": "yarn compile && electron-builder -c -l -p never"
   },

@@ -2,7 +2,7 @@
   "name": "youtube-downloader",
   "productName": "YouTube Downloader",
   "companyName": "Team int",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple YouTube downloader",
   "main": "index.js",
   "scripts": {

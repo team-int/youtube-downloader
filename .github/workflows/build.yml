@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   buildLnx:
-    name: Debian, RedHat Package(.deb, .rpm)
+    name: Debian, RedHat, Arch linux, and snap Package(.deb, .rpm, .pacman, .snap)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -16,13 +16,14 @@ jobs:
           persist-credentials: false 
       - name: Install Dependencies
         run: yarn
-      - name: Install rpm, fakeroot, dpkg, and libarchive-tools
+      - name: Install rpm, fakeroot, dpkg, libarchive-tools, and snapcraft
         run: |
           sudo apt update -y
           sudo apt install -y rpm fakeroot dpkg libarchive-tools
+          sudo snap install snapcraft
       - name: Build
         run: yarn build:lnx
-      - name: Upload Artifacts
+      - name: Upload deb, rpm, and pacman Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: lnx
@@ -30,6 +31,11 @@ jobs:
             out/youtube-downloader_*.*.*_amd64.deb
             out/youtube-downloader-*.*.*.x86_64.rpm
             out/youtube-downloader-*.*.*.pacman
+      - name: Upload snap Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: snap
+          path: out/youtube-downloader_*.*.*_amd64.snap
   buildMac:
     name: macOS Application(.dmg)
     runs-on: macos-latest
@@ -106,3 +112,9 @@ jobs:
             msi/*
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: Install snapcraft and login
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.SNAPCRAFT }}
+      - name: Publish to snapcraft
+        run: snapcraft upload --channel stable snap/youtube-downloader_*.*.*_amd64.snap

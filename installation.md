@@ -26,6 +26,8 @@
 
 ## Linux
 
+권장되는 방법은 [Snap](https://snapcraft.io/youtube-downloader)을 이용하는 거에요. 하지만 아래의 방법을 사용할 수도 있어요.
+
 Ubuntu/Debian: deb 파일
 
 RedHat/Fefora/CentOS: rpm 파일
@@ -42,8 +44,6 @@ Arch linux: `sudo pacman -U <파일 경로>`
 
 혹은 Ubuntu/Debian 리눅스의 경우 [PPA](https://github.com/team-int/ppa)를 통해 설치할 수도 있어요
 
-(다른 리눅스 배포판은 지원하지 않아요.)
-
 # 업데이트
 
 ## Windows(64비트, 32비트)
@@ -57,6 +57,8 @@ macOS의 코드 사이닝 정책에 의해 자동 업데이트를 받을 수 없
 ~~사실 이제 저희가 학생이다보니 개발자 인증받을 돈이 없어서 그런겁니다. 죄송하지만 이해해주세요. 근데 왜 이게 돈이 드는거냐고ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ~~
 
 ## Linux
+
+Snap으로 설치한 경우: `sudo snap refresh`로 업데이트할 수 있어요.
 
 Debian/Ubuntu 계열: PPA를 통해 설치한 경우 `sudo apt update`와 `sudo apt upgrade`로 업데이트할 수 있어요.
 

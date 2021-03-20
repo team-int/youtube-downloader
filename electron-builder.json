@@ -51,12 +51,20 @@
             {
                 "target": "pacman",
                 "arch": "x64"
+            },
+            {
+                "target": "snap",
+                "arch": "x64"
             }
         ],
         "icon": "build/linux-icon",
         "synopsis": "A simple YouTube Downloader",
         "description": "A simple YouTube Downloader",
         "category": "Utility"
+    },
+    "snap": {
+        "confinement": "strict",
+        "grade": "stable"
     },
     "mac": {
         "category": "public.app-category-utilities",

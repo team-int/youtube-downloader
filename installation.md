@@ -26,7 +26,11 @@
 
 ## Linux
 
-권장되는 방법은 [Snap](https://snapcraft.io/youtube-downloader)을 이용하는 거에요. 하지만 아래의 방법을 사용할 수도 있어요.
+권장되는 방법은 Snap을 통한 설치에요. 아래 버튼을 클릭해서 설치할 수 있어요.
+
+[![Snap](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/youtube-downloader)
+
+하지만 아래의 방법을 사용할 수도 있어요.
 
 Ubuntu/Debian: deb 파일
 

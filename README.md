@@ -7,3 +7,6 @@
 > - Windows : exe or msi
 > - MacOS : dmg
 > - Linux : nupkg, pacman, rpm, deb, wixobj, wxs 
+
+
+2021 © Team int. All Rights Reserved.

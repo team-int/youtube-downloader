@@ -1,6 +1,6 @@
-**다운로드/설치 전에 꼭 아래 설명을 읽어주세요!**
+**다운로드/설치 전에 꼭 아래 설명을 읽어주세요!** && **Please read the instructions below before downloading/installing!**
 
-# 설치
+# 설치(Install)
 
 ## Windows(64비트) && Windows(64Bit)
 
